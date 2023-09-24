@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 /* eslint-disable react/display-name */
 import * as RadixDialog from '@radix-ui/react-dialog'
 import * as React from 'react'
@@ -348,7 +350,7 @@ const Command = React.forwardRef<HTMLDivElement, CommandProps>((props, forwarded
       .sort((a, b) => {
         const valueA = a.getAttribute(VALUE_ATTR)
         const valueB = b.getAttribute(VALUE_ATTR)
-        return (scores.get(valueB) ?? 0) - (scores.get(valueA) ?? 0)
+        return (score(valueB) ?? 0) - (score(valueA) ?? 0)
       })
       .forEach((item) => {
         const group = item.closest(GROUP_ITEMS_SELECTOR)

@@ -1,9 +1,11 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 // The scores are arranged so that a continuous match of characters will
 // result in a total score of 1.
 //
 // The best case, this character is a match, and either this is the start
 // of the string, or the previous character was also a match.
-var SCORE_CONTINUE_MATCH = 1,
+const SCORE_CONTINUE_MATCH = 1,
   // A new match at the start of a word scores better than a new match
   // elsewhere as it's more likely that the user will type the starts
   // of fragments.
@@ -46,7 +48,7 @@ var SCORE_CONTINUE_MATCH = 1,
   // with the number of tokens.
   PENALTY_NOT_COMPLETE = 0.99
 
-var IS_GAP_REGEXP = /[\\\/_+.#"@\[\(\{&]/,
+const IS_GAP_REGEXP = /[\\\/_+.#"@\[\(\{&]/,
   COUNT_GAPS_REGEXP = /[\\\/_+.#"@\[\(\{&]/g,
   IS_SPACE_REGEXP = /[\s-]/,
   COUNT_SPACE_REGEXP = /[\s-]/g
@@ -67,16 +69,16 @@ function commandScoreInner(
     return PENALTY_NOT_COMPLETE
   }
 
-  var memoizeKey = `${stringIndex},${abbreviationIndex}`
+  const memoizeKey = `${stringIndex},${abbreviationIndex}`
   if (memoizedResults[memoizeKey] !== undefined) {
     return memoizedResults[memoizeKey]
   }
 
-  var abbreviationChar = lowerAbbreviation.charAt(abbreviationIndex)
-  var index = lowerString.indexOf(abbreviationChar, stringIndex)
-  var highScore = 0
+  const abbreviationChar = lowerAbbreviation.charAt(abbreviationIndex)
+  let index = lowerString.indexOf(abbreviationChar, stringIndex)
+  let highScore = 0
 
-  var score, transposedScore, wordBreaks, spaceBreaks
+  let score, transposedScore, wordBreaks, spaceBreaks
 
   while (index >= 0) {
     score = commandScoreInner(
